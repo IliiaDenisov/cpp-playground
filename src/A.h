@@ -1,3 +1,4 @@
+#pragma once
 class A {
 public:
     static int a;
