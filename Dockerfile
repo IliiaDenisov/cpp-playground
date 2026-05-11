@@ -1,5 +1,5 @@
 # Using a base image
-FROM gcc:14
+FROM gcc:16.1
 
 # Installing additional libs
 RUN apt-get update && apt-get install -y \
