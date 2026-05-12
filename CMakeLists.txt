@@ -15,13 +15,13 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-file(GLOB_RECURSE geometryHelper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
-add_library(geometryHelper ${geometryHelper_sources})
+file(GLOB_RECURSE geometry_helper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
+add_library(geometry_helper ${geometry_helper_sources})
 
 file(GLOB_RECURSE tests_sources tests/*.cpp tests/*.h)
 add_executable(tests ${tests_sources})
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-target_link_libraries(tests PRIVATE geometryHelper)
+target_link_libraries(tests PRIVATE geometry_helper)
 
 add_executable(playground main.cpp)
-target_link_libraries(playground geometryHelper)
+target_link_libraries(playground PRIVATE geometry_helper)
