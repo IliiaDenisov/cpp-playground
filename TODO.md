@@ -1,0 +1,2 @@
+- Add Catch2 test library
+- Write some tests for geometryHelper library

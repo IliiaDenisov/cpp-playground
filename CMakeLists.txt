@@ -8,5 +8,5 @@ project(CppPlayground)
 file(GLOB_RECURSE geometryHelper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
 add_library(geometryHelper ${geometryHelper_sources})
 
-file(GLOB_RECURSE sources src/*.cpp src/*.h main.cpp)
-add_executable(CppPlayground ${sources})
+add_executable(playground main.cpp)
+target_link_libraries(playground geometryHelper)
