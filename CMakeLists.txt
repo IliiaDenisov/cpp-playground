@@ -5,6 +5,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(CppPlayground)
 
+option(ENABLE_SANITIZERS "Enable Address Sanitizer" OFF)
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(ENABLE_SANITIZERS ON)
+endif()
+
+if (ENABLE_SANITIZERS)
+    add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
+    add_link_options(-fsanitize=address,undefined)
+endif()
+
 include(FetchContent)
 
 FetchContent_Declare(

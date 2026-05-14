@@ -5,6 +5,7 @@
 int main()
 {
     auto isInRect = CollisionHelper::IsPointInRectangle(PointDouble{0.0, 0.0}, CRect{-1, -1, 1, 1});
-    std::cout << "Is in rect: " << isInRect << "\n";
+    int a[10];
+    std::cout << a[15] << "\n";
     return 0;
 }
