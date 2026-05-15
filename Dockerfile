@@ -7,10 +7,11 @@ RUN apt-get update && apt-get install -y \
     gdb \
     valgrind \
     ninja-build \
+    clang-tidy-18 \
     && rm -rf /var/lib/apt/lists/*
 
 # Setting working directory inside the container
-WORKDIR /cpp-app
+WORKDIR /app
 
 # Using default command
 CMD ["bash"]

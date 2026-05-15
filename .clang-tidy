@@ -1,0 +1,10 @@
+# .clang-tidy
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  readability-*
+
+# comment this out for now
+# WarningsAsErrors: "*"
