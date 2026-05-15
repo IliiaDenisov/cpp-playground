@@ -1,0 +1,15 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: iliiadenisov/cpp-26-playground:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          chmod +x build.sh
+          ./build.sh
+      - name: Test
+        run: |
+          cd build
+          ./tests

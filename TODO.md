@@ -1,6 +1,7 @@
 - ~~Add catch2~~
-- Add catch2 as a submodule
-- Write tests for geometryHelper library
+- ~~Add catch2 as a submodule~~
 - ~~Add clang-tidy~~
-- Add Google benchmark library
+- ~~Add Google benchmark library~~
+- Write tests for geometryHelper library
+- Write benchmarks for geometryHelper library
 - Add CI/CD pipeline
