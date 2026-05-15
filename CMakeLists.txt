@@ -23,9 +23,12 @@ if (ENABLE_SANITIZERS)
     add_link_options(-fsanitize=address,undefined)
 endif()
 
-
-# Adding Catch2
+# Adding Catch2 library
 add_subdirectory(third-party/Catch2)
+
+# Adding Google Benchmark library
+set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON CACHE BOOL "" FORCE)
+add_subdirectory(third-party/benchmark)
 
 file(GLOB_RECURSE geometry_helper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
 add_library(geometry_helper ${geometry_helper_sources})
@@ -37,6 +40,7 @@ file(GLOB_RECURSE tests_sources tests/*.cpp tests/*.h)
 add_executable(tests ${tests_sources})
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(tests PRIVATE geometry_helper)
+target_link_libraries(tests PRIVATE benchmark::benchmark)
 
 add_executable(playground main.cpp)
 target_link_libraries(playground PRIVATE geometry_helper)
