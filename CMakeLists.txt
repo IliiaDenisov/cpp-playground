@@ -23,15 +23,9 @@ if (ENABLE_SANITIZERS)
     add_link_options(-fsanitize=address,undefined)
 endif()
 
-include(FetchContent)
 
-FetchContent_Declare(
-    Catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.5.4
-)
-
-FetchContent_MakeAvailable(Catch2)
+# Adding Catch2
+add_subdirectory(third-party/Catch2)
 
 file(GLOB_RECURSE geometry_helper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
 add_library(geometry_helper ${geometry_helper_sources})
