@@ -5,3 +5,4 @@
 - Write tests for geometryHelper library
 - Write benchmarks for geometryHelper library
 - Add CI/CD pipeline
+- Add Doxygen documentation

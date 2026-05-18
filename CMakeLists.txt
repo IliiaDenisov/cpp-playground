@@ -31,7 +31,7 @@ set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON CACHE BOOL "" FORCE)
 add_subdirectory(third-party/benchmark)
 
 file(GLOB_RECURSE geometry_helper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
-add_library(geometry_helper ${geometry_helper_sources})
+add_library(geometry_helper SHARED ${geometry_helper_sources})
 if (ENABLE_CLANG_TIDY)
     set_target_properties(geometry_helper PROPERTIES CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
 endif()
