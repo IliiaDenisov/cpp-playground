@@ -11,6 +11,8 @@ jobs:
       image: iliiadenisov/cpp-26-playground:latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive 
       - name: Build
         run: |
           chmod +x build.sh
