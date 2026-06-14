@@ -1,7 +1,4 @@
-# Using a base image
-FROM gcc:16.1
-
-# Installing additional libs
+FROM gcc:16.1 as base
 RUN apt-get update && apt-get install -y \
     cmake \
     gdb \
@@ -10,8 +7,19 @@ RUN apt-get update && apt-get install -y \
     clang-tidy-18 \
     && rm -rf /var/lib/apt/lists/*
 
-# Setting working directory inside the container
+FROM base as dev
 WORKDIR /app
-
-# Using default command
 CMD ["bash"]
+
+FROM base as builder
+COPY . /app
+WORKDIR /app
+RUN pwd
+RUN ls
+RUN bash build.sh
+
+FROM gcc:16.1 as runtime
+COPY --from=builder /app/build/playground /usr/local/bin/
+COPY --from=builder /app/build/libgeometry_helper.so /usr/local/lib/
+RUN ldconfig
+ENTRYPOINT ["playground"]
