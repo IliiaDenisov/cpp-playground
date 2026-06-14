@@ -36,7 +36,7 @@ if (ENABLE_CLANG_TIDY)
     set_target_properties(geometry_helper PROPERTIES CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
 endif()
 
-file(GLOB_RECURSE tests_sources tests/*.cpp tests/*.h)
+file(GLOB_RECURSE tests_sources test/*.cpp test/*.h)
 add_executable(tests ${tests_sources})
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(tests PRIVATE geometry_helper)
