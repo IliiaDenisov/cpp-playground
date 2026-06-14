@@ -1,13 +1,15 @@
 FROM gcc:16.1 as base
 RUN apt-get update && apt-get install -y \
     cmake \
-    gdb \
-    valgrind \
     ninja-build \
     clang-tidy-18 \
     && rm -rf /var/lib/apt/lists/*
 
 FROM base as dev
+RUN apt-get install -y \
+        gdb \
+        valgrind \
+        && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 CMD ["bash"]
 
