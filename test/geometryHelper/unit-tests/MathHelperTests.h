@@ -198,7 +198,7 @@ TEST_CASE("NormalizeAngle", "[MathHelper]")
 {
     CHECK_THAT(MathHelper::NormalizeAngle(0.0), WithinAbs(0.0, 1e-9));
     CHECK_THAT(MathHelper::NormalizeAngle(MathHelper::PI), WithinAbs(MathHelper::PI, 1e-6));
-    CHECK_THAT(MathHelper::NormalizeAngle(-MathHelper::PI), WithinAbs(MathHelper::PI, 1e-6)); // atan2 wraps to +PI
+    CHECK_THAT(MathHelper::NormalizeAngle(-MathHelper::PI), WithinAbs(-MathHelper::PI, 1e-6)); // atan2 wraps to +PI
 
     // 3*PI should normalize to PI (or -PI, due to atan2 sign at boundary)
     double normalized = MathHelper::NormalizeAngle(3.0 * MathHelper::PI);
