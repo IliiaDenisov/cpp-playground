@@ -17,12 +17,6 @@ if (ENABLE_CLANG_TIDY)
     find_program(CLANG_TIDY_EXE NAMES clang-tidy-18 REQUIRED)
 endif()
 
-# Turning Address Sanitizer on
-if (ENABLE_SANITIZERS)
-    add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
-    add_link_options(-fsanitize=address,undefined)
-endif()
-
 # Adding Catch2 library
 add_subdirectory(third-party/Catch2)
 
@@ -35,6 +29,13 @@ add_library(geometry_helper SHARED ${geometry_helper_sources})
 if (ENABLE_CLANG_TIDY)
     set_target_properties(geometry_helper PROPERTIES CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
 endif()
+
+# adding sanitizers
+if (ENABLE_SANITIZERS)
+    target_compile_options(geometry_helper PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer)
+    target_link_options(geometry_helper PRIVATE -fsanitize=address,undefined)
+endif()
+
 
 # Unit testing geometry functions
 file(GLOB_RECURSE geometryHelper_unit_tests_sources test/geometryHelper/unit-tests/*.cpp test/geometryHelper/unit-tests/*.h)
@@ -49,7 +50,4 @@ target_link_libraries(geometryHelper_benchmarks PRIVATE geometry_helper)
 target_link_libraries(geometryHelper_benchmarks PRIVATE benchmark::benchmark)
 
 add_executable(playground main.cpp)
-target_link_libraries(playground PRIVATE geometry_helper)
-if (ENABLE_CLANG_TIDY)
-    set_target_properties(playground PROPERTIES CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
-endif()
+target_compile_options(playground PRIVATE -freflection)
