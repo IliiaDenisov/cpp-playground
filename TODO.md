@@ -2,7 +2,7 @@
 - ~~Add catch2 as a submodule~~
 - ~~Add clang-tidy~~
 - ~~Add Google benchmark library~~
-- Write tests for geometryHelper library
-- Write benchmarks for geometryHelper library
-- Add CI/CD pipeline
+- ~~Write tests for geometryHelper library~~
+- ~~Write benchmarks for geometryHelper library~~
+- ~~Add CI/CD pipeline~~
 - Add Doxygen documentation
