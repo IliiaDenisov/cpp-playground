@@ -36,11 +36,17 @@ if (ENABLE_CLANG_TIDY)
     set_target_properties(geometry_helper PROPERTIES CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
 endif()
 
-file(GLOB_RECURSE tests_sources test/*.cpp test/*.h)
-add_executable(tests ${tests_sources})
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-target_link_libraries(tests PRIVATE geometry_helper)
-target_link_libraries(tests PRIVATE benchmark::benchmark)
+# Unit testing geometry functions
+file(GLOB_RECURSE geometryHelper_unit_tests_sources test/geometryHelper/unit-tests/*.cpp test/geometryHelper/unit-tests/*.h)
+add_executable(geometryHelper_unit_tests ${geometryHelper_unit_tests_sources})
+target_link_libraries(geometryHelper_unit_tests PRIVATE geometry_helper)
+target_link_libraries(geometryHelper_unit_tests PRIVATE Catch2::Catch2WithMain)
+
+# Benchmarking geometry functions
+file(GLOB_RECURSE geometryHelper_benchmark_sources test/geometryHelper/benchmarks/*.cpp test/geometryHelper/benchmarks/*.h)
+add_executable(geometryHelper_benchmarks ${geometryHelper_benchmark_sources})
+target_link_libraries(geometryHelper_benchmarks PRIVATE geometry_helper)
+target_link_libraries(geometryHelper_benchmarks PRIVATE benchmark::benchmark)
 
 add_executable(playground main.cpp)
 target_link_libraries(playground PRIVATE geometry_helper)
