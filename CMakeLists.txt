@@ -24,6 +24,9 @@ add_subdirectory(third-party/Catch2)
 set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON CACHE BOOL "" FORCE)
 add_subdirectory(third-party/benchmark)
 
+# Adding Boost.Asio
+add_subdirectory(third-party/asio)
+
 file(GLOB_RECURSE geometry_helper_sources src/geometryHelper/*.cpp src/geometryHelper/*.h)
 add_library(geometry_helper SHARED ${geometry_helper_sources})
 if (ENABLE_CLANG_TIDY)
